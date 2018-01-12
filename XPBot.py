@@ -43,20 +43,8 @@ def dbAddXp(playerName, xp):
 	else:
 		print("Duplicate user error")
 
-#def addXp(player, xp):
-#	if player in players:
-#		players[player] = players[player] + xp
-#	else:
-#		players[player] = xp
-
 def dbClearXp(playerName):
 	db.remove(playersDB.name == playerName)
-
-#def clearXp(player):
-#	try:
-#		players[player] = 0
-#	except:
-#		print("Player {} doesn't exist!".format(player))
 
 def dbSetXp(playerName, xp):
 	dbPlayer = db.search(playersDB.name == playerName)
@@ -110,8 +98,6 @@ async def listxp():
 		output = "Current XP table:"
 		for player in playersList:
 			output = output + "\n" + "{}: {} XP".format(player['name'], str(player['xp']))
-#			await client.say("{}: {} XP".format(player, str(players[player])))
-#			await asyncio.sleep(3)
 		await client.say(output)
 		await asyncio.sleep(3)
 	else:
@@ -136,9 +122,6 @@ async def resetallplayerxp():
 		output = "Resetting XP table:"
 		for player in playersList:
 			dbClearXp(player)
-			#output = output + "{}: {} XP".format(player, str(players[player]))
-			#await client.say(output)
-			#await asyncio.sleep(3)
 		listxp() # shouldn't return anything since the player table should be empty by this point
 	else:
 		await client.say("There arent any players with registered XP.")
